@@ -17,6 +17,6 @@ if __name__ == '__main__':
     elif ext == '.ckpt':
         pl_module.load_from_checkpoint(pretrained_path, conf, strict=conf['strict_load'])
 
-    trainer = pl.Trainer(gpus=[0])
+    trainer = pl.Trainer(gpus=[])
 
     result = trainer.validate(pl_module)

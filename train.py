@@ -33,7 +33,7 @@ if __name__ == '__main__':
             pl_module.load_from_checkpoint(pretrained_path, conf, strict=conf['strict_load'])
 
     trainer = pl.Trainer(gpus=[0],
-                         accelerator="ddp",
+                         accelerator="cpu",
                          plugins=DDPPlugin(find_unused_parameters=False),
                          max_epochs=conf['trainer']['num_epochs'],
                          callbacks=callbacks,

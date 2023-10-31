@@ -1,0 +1,82 @@
+conf:
+  data:
+    train:
+      augment: true
+      hr_path:
+      - ''
+      is_train: true
+      lr_path:
+      - ''
+      patch_cropsize: 288
+      pool_hr: true
+      pool_lr: true
+      scale: 3
+    val:
+      augment: false
+      hr_path:
+      - ./data/DIV2K_valid_HR
+      is_train: false
+      lr_path:
+      - ./data/DIV2K_valid_LR_bicubic/X3
+      patch_cropsize: false
+      pool_hr: true
+      pool_lr: true
+      scale: 3
+  degradation:
+    train:
+      blur: false
+      img_noise: false
+      img_noise_level: 0.2
+      kernel_noise: false
+      kernel_path:
+      - ''
+      ksize: 21
+      load_kernels_from_disc: false
+      rate_iso: 1.0
+      sig_max: 2.6
+      sig_min: 0.2
+    val:
+      blur: false
+      img_noise: false
+      img_noise_level: 0.2
+      kernel_noise: false
+      kernel_path:
+      - ''
+      ksize: 21
+      load_kernels_from_disc: false
+      rate_iso: 1.0
+      sig_max: 2.6
+      sig_min: 0.2
+  load_pretrained: true
+  loader:
+    train:
+      batch_size: 16
+      num_workers: 8
+      persistent_workers: true
+      pin_memory: false
+      shuffle: false
+    val:
+      batch_size: 1
+      num_workers: 8
+      pin_memory: false
+      shuffle: false
+  loggers:
+    log_images: true
+  network:
+    params:
+      sr_rate: 3
+    target: models.SR_models.Bicubic_plus_plus
+  pretrained_path: ./pretrained/bicubic_pp_x3.pth
+  strict_load: true
+  trainer:
+    base_lr_rate: 0.0005
+    check_val_every_n_epoch: 20
+    lr_scheduler:
+      params:
+        min_lr: 5.0e-06
+        peak_lr: 0.0005
+        total_steps: 1000
+        warmup_steps: 0
+      target: training.schedulers.KneeLRScheduler
+    num_epochs: 1000
+    use_Y_channel_in_val: true

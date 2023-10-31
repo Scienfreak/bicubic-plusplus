@@ -58,8 +58,8 @@ data:
     pool_hr: True
     is_train: True
   val:
-    lr_path: [""]
-    hr_path: [""]
+    lr_path: ["./data/DIV2K_valid_LR_bicubic/X3"]
+    hr_path: ["./data/DIV2K_valid_HR"]
     augment: False
     scale: 3
     patch_cropsize: False
